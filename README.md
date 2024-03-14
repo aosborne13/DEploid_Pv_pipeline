@@ -8,8 +8,9 @@ First create a tools directory to keep track of all software and repositories us
 
     mkdir tools
     cd tools
+Follow DEploid installation instructions on the DEploid GitHub: https://github.com/DEploid-dev/DEploid
 
-Clone required GitHub Repositories
+Once Deploid is installed, clone required GitHub Repositories for this pipeline:
 
     git clone https://github.com/pathogenseq/fastq2matrix.git
     cd fastq2matrix
