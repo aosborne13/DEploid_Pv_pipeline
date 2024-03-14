@@ -41,7 +41,7 @@ parser.add_argument('--miss', default="0.4", type=int, help='Percentage missingn
 #parser.add_argument('--min-adf',type=float,help='Set a minimum frequency for a mixed call')
 #parser.add_argument('--min-variant-qual',default=30,type=int,help='Quality value to use in the sliding window analysis')
 #parser.add_argument('--min-sample-af',default=0.05,type=float,help='Quality value to use in the sliding window analysis')
-parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+parser.add_argument('--version', action='version', version='1.0')
 parser.set_defaults(func=main)
 
 args = parser.parse_args()
