@@ -3,7 +3,7 @@ import sys
 import argparse
 import subprocess as sp
 import csv
-#import fastq2matrix as fm
+import fastq2matrix as fm
 #from fastq2matrix import run_cmd
 from collections import defaultdict
 import gzip
