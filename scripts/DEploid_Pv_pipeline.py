@@ -32,7 +32,7 @@ def main(args):
 # use filtered VCF for DEploid
 # Set up the parser
 parser = argparse.ArgumentParser(description='DEploid pipeline wrapper for use on P. vivax',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
+#parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
 parser.add_argument('--input',type=str,help='Merged vcf file containing all required samples in compressed format',required=True)
 #parser.add_argument('--vcf_file',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
 parser.add_argument('--miss', default=0.4, type=int, help='Percentage missingness allowed; 0.4 allows 40% missingness')
