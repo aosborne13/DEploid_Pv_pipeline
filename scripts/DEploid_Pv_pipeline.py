@@ -22,10 +22,10 @@ def run_cmd(cmd):
         sys.exit("Error running last command, please check!\n")
 
 def main(args):
-
-    # requires filtered vcf
-    # extract snps and filter by missingness
-    run_cmd('bcftools view -v snps %(vcf)s -Oz -o merged_snps.vcf.gz' % vars(args))
+    
+    run_cmd("mkdir individual_output")
+    run_cmd("mkdir BEST")
+    run_cmd("bcftools view -v snps %(vcf)s -Oz -o merged_snps.vcf.gz" % vars(args))
     #run_cmd(f'bcftools view -v snps {args.vcf} -Oz -o merged_snps.vcf.gz')
     #run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
     #run_cmd("plink --const-fid --vcf merged.filt.snps.vcf.gz --mind %(miss)s --recode vcf --allow-extra-chr --out merged_plink" % vars(args))
