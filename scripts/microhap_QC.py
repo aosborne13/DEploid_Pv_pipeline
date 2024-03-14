@@ -19,20 +19,9 @@ def run_cmd(cmd):
 
 def main(args):
     
-    run_cmd("mkdir FASTQC_results")
-    run_cmd("mkdir bam_files")
-    run_cmd("mkdir cov_stats")
+    run_cmd("mkdir individual_output")
+    run_cmd("mkdir BEST")
   
-    for sample in samples:
-        args.sample = sample
-        run_cmd("fastqc -t 6 %(sample)s_R1.fastq.gz %(sample)s_R2.fastq.gz -o FASTQC_results" % vars(args))
-        run_cmd("bwa mem -t 6 -R \"@RG\\tID:M00859\\tSM:%(sample)s\\tLB:MicroHap\\tPU:L6WVN:1\\tPL:Illumina\" %(ref)s %(sample)s_R1.fastq.gz %(sample)s_R2.fastq.gz | samclip --ref %(ref)s --max 50 | samtools sort -o %(sample)s.bam -" % vars(args))
-        run_cmd("samtools index %(sample)s.bam" % vars(args))
-        run_cmd("samtools flagstat %(sample)s.bam > %(sample)s.flagstat.txt" % vars(args))
-        #run_cmd("mosdepth -x -b %(bed)s %(sample)s --thresholds 1,10,20,30  %(sample)s.bam" % vars(args))
-        run_cmd("bedtools coverage -a %(bed)s -b %(sample)s.bam -mean > %(sample)s_region_coverage.txt" % vars(args))
-        run_cmd("sambamba depth base %(sample)s.bam > %(sample)s.coverage.txt" % vars(args))
-
     run_cmd("multiqc FASTQC_results")
 
     destination_directory = 'bam_files'
