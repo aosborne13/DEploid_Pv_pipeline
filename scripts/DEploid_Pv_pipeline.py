@@ -40,7 +40,6 @@ def main(args):
 parser = argparse.ArgumentParser(description='DEploid pipeline wrapper for use on P. vivax',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--vcf',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
 parser.add_argument('--miss', default=0.4,type=int,help='Percentage missingness allowed; 0.4 allows 40% missingness')
-parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 parser.set_defaults(func=main)
 
 args = parser.parse_args()
