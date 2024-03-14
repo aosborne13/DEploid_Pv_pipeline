@@ -4,15 +4,11 @@ import argparse
 import subprocess as sp
 import csv
 import fastq2matrix as fm
-#from fastq2matrix import run_cmd
+from fastq2matrix import run_cmd
 from collections import defaultdict
 import gzip
 import os
 import shutil
-import threading
-import multiprocessing
-import glob
-import re
 
 def run_cmd(cmd):
     sys.stderr.write("Running command:\n%s\n\n" % cmd)
@@ -22,10 +18,13 @@ def run_cmd(cmd):
         sys.exit("Error running last command, please check!\n")
 
 def main(args):
-    
+
+#    fm.bwa_index(args.ref)
+#    fm.create_seq_dict(args.ref)
+#    fm.faidx(args.ref)
     run_cmd("mkdir individual_output")
     run_cmd("mkdir BEST")
-    run_cmd("bcftools view -v snps %(vcf)s -Oz -o merged_snps.vcf.gz" % vars(args))
+    #run_cmd("bcftools view -v snps %(vcf_file)s -Oz -o merged_snps.vcf.gz" % vars(args))
     #run_cmd(f'bcftools view -v snps {args.vcf} -Oz -o merged_snps.vcf.gz')
     #run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
     #run_cmd("plink --const-fid --vcf merged.filt.snps.vcf.gz --mind %(miss)s --recode vcf --allow-extra-chr --out merged_plink" % vars(args))
@@ -35,13 +34,20 @@ def main(args):
     #run_cmd("bcftools view -m2 -M2 merged.filt.GT.miss0.4.snps.vcf.gz --threads 4 -O z -o merged.bi.filt.GT.miss0.4.snps.vcf.gz")
 
 # use filtered VCF for DEploid
-
 # Set up the parser
 parser = argparse.ArgumentParser(description='DEploid pipeline wrapper for use on P. vivax',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('--vcf',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
-parser.add_argument('--miss', default=0.4,type=int,help='Percentage missingness allowed; 0.4 allows 40% missingness')
+#parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
+parser.add_argument('--vcf_file',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
+parser.add_argument('--miss', default="0.4",type=int,help='Percentage missingness allowed; 0.4 allows 40% missingness')
+#parser.add_argument('--gff',type=str,help='GFF file',required=True)
+#parser.add_argument('--bed',type=str,help='BED file with MicroHaplotype locations',required=True)
+#parser.add_argument('--min-base-qual',default=30,type=int,help='Minimum base quality to use by freebayes')
+#parser.add_argument('--min-adf',type=float,help='Set a minimum frequency for a mixed call')
+#parser.add_argument('--min-variant-qual',default=30,type=int,help='Quality value to use in the sliding window analysis')
+#parser.add_argument('--min-sample-af',default=0.05,type=float,help='Quality value to use in the sliding window analysis')
 parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 parser.set_defaults(func=main)
 
 args = parser.parse_args()
 args.func(args)
+
