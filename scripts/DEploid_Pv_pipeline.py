@@ -21,7 +21,7 @@ def run_cmd(cmd):
     if res!=0:
         sys.exit("Error running last command, please check!\n")
 
-def main(args)
+def main(args):
 # requires filtered vcf
 # extract snps and filter by missingness
     run_cmd('bcftools view -v snps %(vcf)s -Oz -o merged_snps.vcf.gz' % vars(args))
