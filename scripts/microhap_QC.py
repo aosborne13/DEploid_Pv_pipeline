@@ -22,7 +22,6 @@ def main(args):
     run_cmd("mkdir individual_output")
     run_cmd("mkdir BEST")
   
-    run_cmd("multiqc FASTQC_results")
 
     destination_directory = 'bam_files'
     os.makedirs(destination_directory, exist_ok=True)
@@ -56,6 +55,8 @@ def main(args):
 parser = argparse.ArgumentParser(description='MicroHaplotype Quality Control script',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
 parser.add_argument('--ref',type=str,help='Reference fasta',required=True)
+parser.add_argument('--vcf_file',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
+parser.add_argument('--miss', default="0.4", type=int, help='Percentage missingness allowed; 0.4 allows 40% missingness')
 #parser.add_argument('--gff',type=str,help='GFF file',required=True)
 parser.add_argument('--bed',type=str,help='BED file with MicroHaplotype locations',required=True)
 #parser.add_argument('--min-base-qual',default=30,type=int,help='Minimum base quality to use by freebayes')
