@@ -18,10 +18,6 @@ def run_cmd(cmd):
         sys.exit("Error running last command, please check!\n")
 
 def main(args):
-
-    fm.bwa_index(args.ref)
-    fm.create_seq_dict(args.ref)
-    fm.faidx(args.ref)
     
     run_cmd("mkdir FASTQC_results")
     run_cmd("mkdir bam_files")
