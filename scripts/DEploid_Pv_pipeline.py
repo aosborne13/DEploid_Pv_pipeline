@@ -19,13 +19,9 @@ def run_cmd(cmd):
 
 def main(args):
 
-#    fm.bwa_index(args.ref)
-#    fm.create_seq_dict(args.ref)
-#    fm.faidx(args.ref)
     run_cmd("mkdir individual_output")
     run_cmd("mkdir BEST")
-    #run_cmd("bcftools view -v snps %(vcf_file)s -Oz -o merged_snps.vcf.gz" % vars(args))
-    #run_cmd(f'bcftools view -v snps {args.vcf} -Oz -o merged_snps.vcf.gz')
+    run_cmd("bcftools view -v snps %(vcf_file)s -Oz -o merged_snps.vcf.gz" % vars(args))
     #run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
     #run_cmd("plink --const-fid --vcf merged.filt.snps.vcf.gz --mind %(miss)s --recode vcf --allow-extra-chr --out merged_plink" % vars(args))
     #run_cmd("grep -P \"^#CHROM\" merged_plink.vcf | awk '{ $1=\"\"; $2=\"\";$3=\"\"; $4=\"\";$5=\"\"; $6=\"\";$7=\"\"; $8=\"\";$9=\"\"; print}' | sed 's/ /\\n/g' | tail -n+10 | sed 's/^0_//'  > merged_plink_new")
@@ -38,7 +34,7 @@ def main(args):
 parser = argparse.ArgumentParser(description='DEploid pipeline wrapper for use on P. vivax',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 #parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
 parser.add_argument('--vcf_file',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
-parser.add_argument('--miss', default="0.4",type=int,help='Percentage missingness allowed; 0.4 allows 40% missingness')
+parser.add_argument('--miss', default="0.4", type=int, help='Percentage missingness allowed; 0.4 allows 40% missingness')
 #parser.add_argument('--gff',type=str,help='GFF file',required=True)
 #parser.add_argument('--bed',type=str,help='BED file with MicroHaplotype locations',required=True)
 #parser.add_argument('--min-base-qual',default=30,type=int,help='Minimum base quality to use by freebayes')
