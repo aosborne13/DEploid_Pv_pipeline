@@ -140,7 +140,9 @@ AF.workflow <- function() {
   infix <- sub(".*/", "", GT.file, perl = TRUE)
   infix <- sub(".GT.txt.gz", "", infix, fixed = TRUE)
   
-  PLAF.file.prefix <- paste0("/DEploid_input/", infix)
+  #PLAF.file.prefix <- paste0("/DEploid_input/", infix)
+  PLAF.file.prefix <- paste0(dirname(GT.file), "/", infix)
+
     
   helper(GT, REF.AD, ALT.AD, PLAF.file.prefix)
 }
