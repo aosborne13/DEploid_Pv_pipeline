@@ -25,7 +25,7 @@ def main(args):
     run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
     run_cmd("plink --const-fid --vcf merged.filt.snps.vcf.gz --mind 0.4 --recode vcf --allow-extra-chr --out merged_plink" % vars(args))
     run_cmd("grep -P \"^#CHROM\" merged_plink.vcf | awk '{ $1=\"\"; $2=\"\";$3=\"\"; $4=\"\";$5=\"\"; $6=\"\";$7=\"\"; $8=\"\";$9=\"\"; print}' | sed 's/ /\\n/g' | tail -n+10 | sed 's/^0_//'  > merged_plink_new")
-    run_cmd("bcftools view -S mhaps_merged_plink_new --threads 4 -O z -o  merged.miss0.4.filt.snps.vcf.gz merged.filt.snps.vcf.gz")
+    run_cmd("bcftools view -S merged_plink_new --threads 4 -O z -o  merged.miss0.4.filt.snps.vcf.gz merged.filt.snps.vcf.gz")
     run_cmd("bcftools view merged.miss0.4.filt.snps.vcf.gz | setGT.py --fraction 0.8 | bcftools view -O z -c 1 -o merged.filt.GT.miss0.4.snps.vcf.gz")
     run_cmd("bcftools view -m2 -M2 merged.filt.GT.miss0.4.snps.vcf.gz --threads 4 -O z -o merged.bi.filt.GT.miss0.4.snps.vcf.gz")
 
