@@ -33,7 +33,7 @@ helper() {
 
 
 infile='merged.bi.filt.GT.miss0.4.snps.vcf.gz'
-#outdir=''
+outdir='DEploid_input'
 
 helper 'GT' "$infile" "$outdir" &
 helper 'AD{0}' "$infile" "$outdir" &
