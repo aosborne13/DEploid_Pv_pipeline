@@ -21,6 +21,7 @@ def main(args):
 
     run_cmd("mkdir individual_output")
     run_cmd("mkdir BEST")
+    run_cmd("mkdir DEploid_input")
     run_cmd("bcftools view -v snps %(input)s -Oz -o merged_snps.vcf.gz" % vars(args))
     run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
     run_cmd("plink --const-fid --vcf merged.filt.snps.vcf.gz --mind 0.4 --recode vcf --allow-extra-chr --out merged_plink" % vars(args))
