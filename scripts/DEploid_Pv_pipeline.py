@@ -29,6 +29,7 @@ def main(args):
     run_cmd("bcftools view -S merged_plink_new --threads 4 -O z -o  merged.miss0.4.filt.snps.vcf.gz merged.filt.snps.vcf.gz")
     run_cmd("bcftools view merged.miss0.4.filt.snps.vcf.gz | setGT.py --fraction 0.8 | bcftools view -O z -c 1 -o merged.filt.GT.miss0.4.snps.vcf.gz")
     run_cmd("bcftools view -m2 -M2 merged.filt.GT.miss0.4.snps.vcf.gz --threads 4 -O z -o merged.bi.filt.GT.miss0.4.snps.vcf.gz")
+    run_cmd("tabix -f merged.bi.filt.GT.miss0.4.snps.vcf.gz")
 
     run_cmd("bash extract_DEploid.sh")
     #run_cmd("find DEploid_input/merged.bi.filt.GT.miss0.4.snps.GT.txt.gz -print0 | xargs -0 -n 1 -P 1 Rscript ~/tools/DEploid_Pv_pipeline/scripts/calculate_PLAF_DEploid.R")
