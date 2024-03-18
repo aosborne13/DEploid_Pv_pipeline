@@ -38,6 +38,8 @@ def main(args):
     run_cmd("bash extract_sites.sh")
     run_cmd("mkdir run_DEploid")
     run_cmd("bash dataExplore_sites.sh")
+    run_cmd("bash run_DEploid_sites.sh")
+    run_cmd("bash compile_props_DEploid_sites.sh")
 
 # use filtered VCF for DEploid
 # Set up the parser
