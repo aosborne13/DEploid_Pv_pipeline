@@ -36,6 +36,8 @@ def main(args):
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/calculate_PLAF_DEploid.R DEploid_input/merged.bi.filt.GT.miss0.4.snps.GT.txt.gz DEploid_input/merged.bi.filt.GT.miss0.4.snps.AD.0.txt.gz DEploid_input/merged.bi.filt.GT.miss0.4.snps.AD.1.txt.gz")
     run_cmd("bash subset_sites.sh")
     run_cmd("bash extract_sites.sh")
+    run_cmd("mkdir run_DEploid")
+    run_cmd("bash dataExplore_sites.sh")
 
 # use filtered VCF for DEploid
 # Set up the parser
