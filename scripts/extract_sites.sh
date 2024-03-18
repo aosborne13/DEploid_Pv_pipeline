@@ -2,7 +2,7 @@
 
 outdir='DEploid_input'
 bcf='DEploid_input/merged_dataset.filt.DEploid.bcf.gz'
-samples='DEploid_input/samples.txt'
+samples='samples.txt'
 
 while read -r sample; do
     # First extraction
