@@ -125,26 +125,6 @@ helper <-
     write.PLAF.sites(PLAF, PLAF.sites.file)
   }
 
-AF.workflow <- function() {
-  index.col <- c("CHROM", "POS")
-  
-  GT.file <- commandArgs(trailingOnly = TRUE)
-  
-  REF.AD.file <- sub("GT", "AD.0", GT.file, fixed = TRUE)
-  ALT.AD.file <- sub("GT", "GT.miss0.4.snps.AD.1", REF.AD.file, fixed = TRUE)
-  
-  GT <- read.GT(GT.file, index.col = index.col)
-  REF.AD <- read.FORMAT(REF.AD.file, index.col = index.col)
-  ALT.AD <- read.FORMAT(ALT.AD.file, index.col = index.col)
-  
-  infix <- sub(".*/", "", GT.file, perl = TRUE)
-  infix <- sub(".GT.txt.gz", "", infix, fixed = TRUE)
-  
-  PLAF.file.prefix <- paste0("~/Documents/deploid_pipeline/test_1/DEploid_input/", infix)
-    
-  helper(GT, REF.AD, ALT.AD, PLAF.file.prefix)
-}
-
 
 #AF.workflow <- function() {
 #  index.col <- c("CHROM", "POS")
@@ -160,11 +140,27 @@ AF.workflow <- function() {
 #  infix <- sub(".*/", "", GT.file, perl = TRUE)
 #  infix <- sub(".GT.txt.gz", "", infix, fixed = TRUE)
 #  
-#  PLAF.file.prefix <- paste0("~/Documents/deploid_pipeline/test_1/DEploid_input/", infix)
+#  PLAF.file.prefix <- paste0("DEploid_input/", infix)
   #PLAF.file.prefix <- paste0(dirname(GT.file), "/", infix)
 #
 #    
 #  helper(GT, REF.AD, ALT.AD, PLAF.file.prefix)
 #}
-#
+
 #AF.workflow()
+AF.workflow <- function(GT.file, REF.AD.file, ALT.AD.file) {
+  index.col <- c("CHROM", "POS")
+  
+  GT <- read.GT(GT.file, index.col = index.col)
+  REF.AD <- read.FORMAT(REF.AD.file, index.col = index.col)
+  ALT.AD <- read.FORMAT(ALT.AD.file, index.col = index.col)
+  
+  infix <- sub(".*/", "", GT.file, perl = TRUE)
+  infix <- sub(".GT.txt.gz", "", infix, fixed = TRUE)
+  
+  PLAF.file.prefix <- paste0("DEploid_input/", infix)
+  
+  helper(GT, REF.AD, ALT.AD, PLAF.file.prefix)
+}
+
+AF.workflow("merged.bi.filt.GT.miss0.4.snps.GT.txt.gz", "merged.bi.filt.GT.miss0.4.snps.AD.0.txt.gz", "merged.bi.filt.GT.miss0.4.snps.AD.1.txt.gz")
