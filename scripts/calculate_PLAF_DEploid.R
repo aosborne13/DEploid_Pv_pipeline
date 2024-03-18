@@ -130,8 +130,12 @@ AF.workflow <- function() {
   index.col <- c("CHROM", "POS")
   
   GT.file <- commandArgs(trailingOnly = TRUE)
+  #REF.AD.file <- sub("GT", "AD.0", GT.file, fixed = TRUE)
+  #ALT.AD.file <- sub("GT", "AD.1", GT.file, fixed = TRUE)
+
   REF.AD.file <- sub("GT", "AD.0", GT.file, fixed = TRUE)
-  ALT.AD.file <- sub("GT", "AD.1", GT.file, fixed = TRUE)
+  ALT.AD.file <- sub("GT", "AD.1", REF.AD.file, fixed = TRUE)
+
   
   GT <- read.GT(GT.file, index.col = index.col)
   REF.AD <- read.FORMAT(REF.AD.file, index.col = index.col)
