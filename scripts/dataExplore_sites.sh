@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-plaf='DEploid_input/merged.bi.filt.GT.miss0.4.snps.PLAF.sites.txt'
+plaf='DEploid_input/merged.bi.filt.GT.miss0.4.snps.PLAF.txt'
 samples='samples.txt'
 
 while read -r sample; do
