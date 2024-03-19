@@ -41,6 +41,7 @@ def main(args):
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/compare_clonality_classification.R")
     run_cmd("mkdir BEST")
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/resolve_mixed_sites.R")
+    run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/create_BEST_reference_panel.R")
 
 # use filtered VCF for DEploid
 # Set up the parser
