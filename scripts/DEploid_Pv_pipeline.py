@@ -40,6 +40,7 @@ def main(args):
     run_cmd("bash dataExplore_sites.sh")
     run_cmd("bash run_DEploid_sites.sh")
     run_cmd("bash compile_props_DEploid_sites.sh")
+    run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/compare_clonality_classification.R")
 
 # use filtered VCF for DEploid
 # Set up the parser
