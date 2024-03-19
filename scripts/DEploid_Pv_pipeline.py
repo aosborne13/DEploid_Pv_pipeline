@@ -19,8 +19,6 @@ def run_cmd(cmd):
 
 def main(args):
 
-    #run_cmd("mkdir individual_output")
-    #run_cmd("mkdir BEST")
     run_cmd("mkdir DEploid_input")
     run_cmd("bcftools view -v snps %(input)s -Oz -o merged_snps.vcf.gz" % vars(args))
     run_cmd("bcftools filter -i 'FMT/DP>4' -S . merged_snps.vcf.gz -Oz -o merged.filt.snps.vcf.gz")
@@ -41,6 +39,8 @@ def main(args):
     run_cmd("bash run_DEploid_sites.sh")
     run_cmd("bash compile_props_DEploid_sites.sh")
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/compare_clonality_classification.R")
+    run_cmd("mkdir BEST")
+    run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/resolve_mixed_sites.R")
 
 # use filtered VCF for DEploid
 # Set up the parser
