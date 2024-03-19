@@ -42,6 +42,7 @@ def main(args):
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/resolve_mixed_sites.R")
     run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/create_BEST_reference_panel.R")
     run_cmd("bash run_DEploid_BEST_sites.sh")
+    run_cmd("Rscript ~/tools/DEploid_Pv_pipeline/scripts/GT2hmmIBD_BEST_sites.R")
 
 # use filtered VCF for DEploid
 # Set up the parser
