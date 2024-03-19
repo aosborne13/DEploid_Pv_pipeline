@@ -47,16 +47,8 @@ def main(args):
 # use filtered VCF for DEploid
 # Set up the parser
 parser = argparse.ArgumentParser(description='DEploid pipeline wrapper for use on P. vivax',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-#parser.add_argument('--index-file',type=str,help='CSV file containing field "Sample"',required=True)
 parser.add_argument('--input',type=str,help='Merged vcf file containing all required samples in compressed format',required=True)
-#parser.add_argument('--vcf_file',type=str,help='Merged vcf file containing all required samples; Use zipped format, i.e. vcf.gz',required=True)
 #parser.add_argument('--miss', default=0.4, type=int, help='Percentage missingness allowed; 0.4 allows 40% missingness')
-#parser.add_argument('--gff',type=str,help='GFF file',required=True)
-#parser.add_argument('--bed',type=str,help='BED file with MicroHaplotype locations',required=True)
-#parser.add_argument('--min-base-qual',default=30,type=int,help='Minimum base quality to use by freebayes')
-#parser.add_argument('--min-adf',type=float,help='Set a minimum frequency for a mixed call')
-#parser.add_argument('--min-variant-qual',default=30,type=int,help='Quality value to use in the sliding window analysis')
-#parser.add_argument('--min-sample-af',default=0.05,type=float,help='Quality value to use in the sliding window analysis')
 parser.add_argument('--version', action='version', version='1.0')
 parser.set_defaults(func=main)
 
