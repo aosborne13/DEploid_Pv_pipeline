@@ -44,3 +44,28 @@ write.table(
   row.names = FALSE,
   col.names = FALSE
 )
+
+# Read the output files
+polyclonals <- read.table("run_DEploid/filtered_non-swga_AF.DEploid.polyclonals.txt", header = FALSE, stringsAsFactors = FALSE)
+monoclonals <- read.table("run_DEploid/filtered_non-swga_AF.DEploid.monoclonals.txt", header = FALSE, stringsAsFactors = FALSE)
+
+# Remove rows with NA values
+clean_polyclonals <- polyclonals[complete.cases(polyclonals), ]
+clean_monoclonals <- monoclonals[complete.cases(monoclonals), ]
+
+# Rewrite the cleaned data to the same files
+write.table(
+  clean_polyclonals,
+  file = "run_DEploid/filtered_non-swga_AF.DEploid.polyclonals.txt",
+  quote = FALSE,
+  row.names = FALSE,
+  col.names = FALSE
+)
+write.table(
+  clean_monoclonals,
+  file = "run_DEploid/filtered_non-swga_AF.DEploid.monoclonals.txt",
+  quote = FALSE,
+  row.names = FALSE,
+  col.names = FALSE
+)
+
