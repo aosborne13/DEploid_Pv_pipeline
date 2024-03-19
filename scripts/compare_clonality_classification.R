@@ -25,11 +25,7 @@ print(meta[meta[, "Fws_0.90"] == FALSE &
              meta[, "DEploid_0.99"] == TRUE, "sample"])
 
 # mark as polyclonals if either Fws or DEploid classified as polyclonal
-#polyclonals.index <- !meta[, "Fws_0.90"] | !meta[, "DEploid_0.99"]
-#polyclonals <- meta[polyclonals.index, "sample"]
-#monoclonals <- meta[!polyclonals.index, "sample"]
-
-polyclonals.index <- meta[, "Fws_0.90"] | meta[, "DEploid_0.99"]
+polyclonals.index <- !meta[, "Fws_0.90"] | !meta[, "DEploid_0.99"]
 polyclonals <- meta[polyclonals.index, "sample"]
 monoclonals <- meta[!polyclonals.index, "sample"]
 
